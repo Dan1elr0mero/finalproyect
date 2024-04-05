@@ -1,0 +1,57 @@
+<div class="container-sm my-5">
+  <div class="row aling-items-stretchS">
+    <div class="col-6 bg-white p-5 rounded">
+      <a routerLink="/index">Volver al inicio</a>
+      <!-- arreglar -->
+
+      <h2 class="fw-bold text-center p-5">Registrate</h2>
+      <!-- login  -->
+      <form [formGroup]="credencialesRegister" (ngSubmit)="manejarEnvio()">
+        <div class="mb-4">
+          <label for="email" class="form-label">Correo electronico</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            formControlName="user"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            formControlName="name"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="form-label">Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            formControlName="password "
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="form-label">Repetir contraseña</label>
+          <input type="password" class="form-control" name="password" />
+        </div>
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary mb-4">
+            Crear usuario
+          </button>
+        </div>
+      </form>
+      <div class="my-3">
+        <span
+          >Ya tienes Cuenta? <a routerLink="/register">Inicia sesion</a></span
+        >
+      </div>
+    </div>
+  </div>
+</div>

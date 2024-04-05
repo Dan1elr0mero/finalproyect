@@ -1,0 +1,11 @@
+nav {
+  text-align: center;
+  background-color: #b90504;
+  filter: alpha(opacity=30);
+  z-index: 1;
+  position: sticky;
+}
+
+li {
+  text-decoration-color: black;
+}

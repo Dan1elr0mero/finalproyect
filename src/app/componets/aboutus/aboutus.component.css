@@ -1,0 +1,8 @@
+.text-justify {
+  text-align: justify;
+}
+.bg-image {
+  background-image: url(../../../assets/v882-kul-52.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}

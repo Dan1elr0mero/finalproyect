@@ -1,0 +1,29 @@
+#separator {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+#separator .content {
+  width: 150%;
+  height: 150px;
+  margin-left: -25%;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.shadow-drop-center {
+  /* animation: shadow-drop-center 0.4s linear both; */
+}
+@keyframes shadow-drop-center {
+  0% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+  100% {
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.55);
+  }
+}
+.shadow-drop-center:hover::before {
+  animation: shadow-drop-center 0.4s linear both;
+}
