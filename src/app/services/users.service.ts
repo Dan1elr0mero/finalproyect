@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Usuarios } from '../interfaces/usuarios';
 
 @Injectable({
@@ -7,30 +8,28 @@ import { Usuarios } from '../interfaces/usuarios';
 })
 export class UsersService {
   constructor() {}
-  API_url = 'http://localhost:4500/login';
+  router = inject(Router);
   httpClient = inject(HttpClient);
+  API_URL: string = 'http://localhost:4500/login';
 
-  crear(usuario: Usuarios) {
-    return this.httpClient.post(this.API_url, usuario);
+  iniciarSesion(credenciales: Usuarios) {
+    return this.httpClient.post(this.API_URL, credenciales);
   }
 
-  leerTodos() {
-    return this.httpClient.get(this.API_url);
+  validarToken(token: string) {
+    return this.httpClient.get(`${this.API_URL}/${token}`);
   }
 
-  leer(id: string) {
-    return this.httpClient.get(this.API_url + '/' + id);
+  estaLogueado() {
+    if (localStorage.getItem('token')) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  actualizar(id: string, usuario: Usuarios) {
-    return this.httpClient.put(`${this.API_url}/${id}`, usuario);
-  }
-
-  eliminar(id: string) {
-    return this.httpClient.delete(`${this.API_url}/${id}`);
-  }
-
-  iniciarSesion(credencialesRegister: Usuarios) {
-    return this.httpClient.post(this.API_url, credencialesRegister);
+  cerrarSesion() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
 }
