@@ -8,37 +8,44 @@
       <!-- login  -->
       <form [formGroup]="credencialesRegister" (ngSubmit)="manejarEnvio()">
         <div class="mb-4">
-          <label for="email" class="form-label">Correo electronico</label>
-          <input
-            type="email"
-            class="form-control"
-            name="email"
-            formControlName="user"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="password" class="form-label">Nombre</label>
+          <label for="nombre" class="form-label">Nombre</label>
           <input
             type="text"
             class="form-control"
-            name="name"
-            formControlName="name"
+            id="nombre"
+            formControlName="nombre"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="nombreUsuario" class="form-label">usuario</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nombreUsuario"
+            formControlName="nombreUsuario"
           />
         </div>
 
         <div class="mb-4">
-          <label for="password" class="form-label">Contraseña</label>
+          <label for="contrasenia1" class="form-label">Contraseña</label>
           <input
             type="password"
             class="form-control"
-            name="password"
-            formControlName="password "
+            name="contrasenia"
+            formControlName="contrasenia1"
           />
         </div>
 
         <div class="mb-4">
-          <label for="password" class="form-label">Repetir contraseña</label>
-          <input type="password" class="form-control" name="password" />
+          <label for="contrasenia2" class="form-label"
+            >Repetir contraseña</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            name="contrasenia2"
+            formControlName="contrasenia2"
+          />
         </div>
 
         <div class="d-grid">
@@ -48,9 +55,7 @@
         </div>
       </form>
       <div class="my-3">
-        <span
-          >Ya tienes Cuenta? <a routerLink="/register">Inicia sesion</a></span
-        >
+        <span>Ya tienes Cuenta? <a routerLink="/login">Inicia sesion</a></span>
       </div>
     </div>
   </div>

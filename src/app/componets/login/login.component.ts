@@ -7,6 +7,7 @@ import {
   Validator,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../../services/users.service';
@@ -17,7 +18,7 @@ const jwtHelperService = new JwtHelperService();
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -31,10 +32,8 @@ export class LoginComponent {
   });
 
   manejarEnvio() {
-    console.log();
     console.log('hice click');
     if (this.credenciales.valid) {
-      console.log('coloque la credenciales no seseraria mente corectas');
       const nombreUsuario = this.credenciales.value.nombreUsuario;
       const contrasenia = this.credenciales.value.contrasenia;
 
@@ -47,22 +46,22 @@ export class LoginComponent {
           nombreUsuario,
           contrasenia,
         };
-        console.log(credenciales);
+
         this.UsersService.iniciarSesion(credenciales).subscribe(
           (respuesta: any) => {
-            console.log('inicio secion');
-            if (respuesta.resultado === 'bien') {
+            if (respuesta.result === 'good') {
               const decodificado = jwtHelperService.decodeToken(
-                respuesta.datos.token
+                respuesta.data.token
               );
-              localStorage.setItem('token', respuesta.datos.token);
-              //localStorage.setItem('data', JSON.stringify(decodificado));
-              this.toastrService.success(
-                respuesta.mensaje + ' ' + decodificado.nombre
-              );
+
+              console.log(decodificado);
+
+              localStorage.setItem('token', respuesta.data.token);
+              localStorage.setItem('data', JSON.stringify(decodificado));
+              this.toastrService.success('Bienvenido');
               this.router.navigateByUrl('/privateindex');
             } else {
-              this.toastrService.error(respuesta.mensaje);
+              this.toastrService.error('error al iniciar sesion');
             }
           }
         );

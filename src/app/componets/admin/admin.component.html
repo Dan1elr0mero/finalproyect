@@ -1,0 +1,39 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">nombre</th>
+        <th scope="col">usuario</th>
+
+        <th scope="col">acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (usuario of usuarios; track usuario.id) {
+      <tr>
+        <th>{{ usuario._id }}</th>
+        <td>{{ usuario.nombre }}</td>
+
+        <td>{{ usuario.nombreUsuario }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-outline-info p-2"
+            (click)="(manejarEditar)"
+          >
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger p-2"
+            (click)="(manejarBorrar)"
+          >
+            <i class="bi bi-trash3"></i>
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

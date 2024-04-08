@@ -8,6 +8,7 @@ import { CoursesComponent } from './componets/courses/courses.component';
 import { PrivateindexComponent } from './componets/privateindex/privateindex.component';
 import { NotfoundComponent } from './componets/notfound/notfound.component';
 import { RegisterComponent } from './componets/register/register.component';
+import { AdminComponent } from './componets/admin/admin.component';
 
 export const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'courses', component: CoursesComponent, title: 'cursos' },
   { path: 'aboutus', component: AboutusComponent, title: 'Nosotros' },
   { path: 'privateindex', component: PrivateindexComponent },
+  { path: 'admin', component: AdminComponent, title: 'admin' },
   { path: '**', component: NotfoundComponent, title: 'error=404' },
 ];
