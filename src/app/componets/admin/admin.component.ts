@@ -35,18 +35,30 @@ export class AdminComponent {
 
   usuarios: any = [];
 
+  idUser: string = '';
+
   manejarLeerTodos() {
     this.createUserService.leerTodos().subscribe((respuesta: any) => {
       this.usuarios = respuesta.data;
-      console.log(respuesta.data);
+      // console.log(respuesta.data);
+      this.manejarLeerTodos();
+    });
+  }
+  manejarCTA(id: string) {
+    this.idUser = id;
+    console.log(this.idUser);
+  }
+
+  manejarBorrar(id: string) {
+    console.log(id);
+    this.createUserService.delate(id).subscribe((respuesta: any) => {
+      console.log(respuesta);
+      this.manejarLeerTodos();
+      this.toastrService.warning('Eliminado');
     });
   }
 
-  manejarBorrar() {
-    const id = this.usuarios.data._id;
-    console.log(id);
-    this.createUserService.delate(id);
+  manejarEditar(id: string) {
+    this.manejarLeerTodos();
   }
-
-  manejarEditar() {}
 }

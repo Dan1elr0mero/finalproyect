@@ -50,16 +50,20 @@ export class LoginComponent {
         this.UsersService.iniciarSesion(credenciales).subscribe(
           (respuesta: any) => {
             if (respuesta.result === 'good') {
+              console.log(respuesta);
               const decodificado = jwtHelperService.decodeToken(
                 respuesta.data.token
               );
 
               console.log(decodificado);
-
-              localStorage.setItem('token', respuesta.data.token);
-              localStorage.setItem('data', JSON.stringify(decodificado));
-              this.toastrService.success('Bienvenido');
-              this.router.navigateByUrl('/privateindex');
+              if (decodificado.id == '66159dd47ee7c2b4c0e60baf') {
+                this.router.navigateByUrl('/admin');
+              } else {
+                localStorage.setItem('token', respuesta.data.token);
+                localStorage.setItem('data', JSON.stringify(decodificado));
+                this.toastrService.success('Bienvenido');
+                this.router.navigateByUrl('/privateindex');
+              }
             } else {
               this.toastrService.error('error al iniciar sesion');
             }
