@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
-import { Usuarios } from '../../interfaces/usuarios';
+import { User, ResponseapiUser } from '../../interfaces/apiResponse';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { CreateUserService } from '../../services/create-user.service';
@@ -21,14 +21,15 @@ import { CreateUserService } from '../../services/create-user.service';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  router = inject(Router);
-  CreateUserService: CreateUserService = inject(CreateUserService);
   credencialesRegister = new FormGroup({
     nombre: new FormControl('', Validators.required),
     nombreUsuario: new FormControl('', Validators.required),
     contrasenia1: new FormControl('', Validators.required),
     contrasenia2: new FormControl('', Validators.required),
   });
+
+  router = inject(Router);
+  CreateUserService: CreateUserService = inject(CreateUserService);
 
   manejarEnvio() {
     const nombre = this.credencialesRegister.value.nombre;
@@ -46,18 +47,21 @@ export class RegisterComponent {
         if (contrasenia1 == contrasenia2) {
           console.log('contraseñas iguales');
 
-          const credencialesValidaddas: Usuarios = {
+          const credencialesValidaddas: User = {
+            _id: '',
             nombre,
             nombreUsuario,
             contrasenia: contrasenia1,
+            createdAt: undefined,
+            updatedAt: undefined,
           };
           this.CreateUserService.crearUsuario(credencialesValidaddas).subscribe(
             (response: any) => {
-              console.log('lo logro señor');
+              // console.log('lo logro señor');
               this.router.navigateByUrl('/login');
             }
           );
-          console.log(credencialesValidaddas);
+          // console.log(credencialesValidaddas);
         } else {
           console.log('contraseñas diferentes');
           alert('contraseñas diferentes');
@@ -65,6 +69,6 @@ export class RegisterComponent {
       }
     }
 
-    console.log('works...');
+    // console.log('works...');
   }
 }

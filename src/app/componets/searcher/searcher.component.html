@@ -1,0 +1,18 @@
+<form (submit)="search()">
+  <input
+    type="text"
+    class="form-control"
+    [(ngModel)]="query"
+    name="query"
+    placeholder="Buscar productos"
+    (keyup)="search()"
+  />
+  <button type="submit">Buscar</button>
+</form>
+
+<!-- <div *ngIf="filteredProducts.length">
+  <div *ngFor="let product of filteredProducts">
+    <h3>{{ product.title }}</h3>
+    
+  </div>
+</div> -->

@@ -1,0 +1,29 @@
+<div class="modal fade show" tabindex="-1" role="dialog" style="display: block">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="col">
+          <div class="card-body a">
+            <div class="card-title card-title-custom">id:{{ user._id }}</div>
+            <div class="card-text card-text-custom">
+              Nombre:{{ user.nombre }}
+            </div>
+            <div class="card-text card-text-custom">
+              Usuario: {{ user.nombreUsuario }}
+            </div>
+            <div class="card-text card-text-custom"></div>
+            Fecha de creacion: {{ user.createdAt }}
+            <div class="card-text card-text-custom"></div>
+          </div>
+          <div class="row"></div>
+        </div>
+      </div>
+      <!-- close -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          <i class="bi bi-x-circle"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

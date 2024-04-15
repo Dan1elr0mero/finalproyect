@@ -1,8 +1,3 @@
-<!-- <nav>
-  <a routerLink="/index">inicio</a>| <a routerLink="/aboutus">nosotros</a>|
-  <a routerLink="/login">iniciar sesion</a>
-</nav> -->
-
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand text-white" routerLink="/index">BASSBOX</a>
@@ -41,19 +36,36 @@
             Servicios
           </a>
           <ul class="dropdown-menu">
+            @if (verification.result==="good") {
             <li>
               <a class="dropdown-item" routerLink="/privateindex">Tienda</a>
             </li>
+            }
+
             <li><a class="dropdown-item" routerLink="/courses">Cursos</a></li>
           </ul>
         </li>
       </ul>
-      <a routerLink="/login"
-        ><button
-          type="button"
-          class="btn btn-outline-light bi bi-person"
-        ></button
-      ></a>
+      <section>
+        @if (verification.result==="good") {
+        <div class="button-and-shopping-cart">
+          <app-favorites></app-favorites>
+          <app-shopping-car></app-shopping-car>
+          <button
+            class="btn btn-outline-light bi bi-box-arrow-right"
+            type="submit"
+            (click)="logOut()"
+          ></button>
+        </div>
+        }@else {
+        <a routerLink="/login"
+          ><button
+            type="button"
+            class="btn btn-outline-light bi bi-person"
+          ></button
+        ></a>
+        }
+      </section>
     </div>
   </div>
 </nav>

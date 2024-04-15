@@ -1,47 +1,41 @@
 <div class="container p-3">
+  <h1 class="text-white">Administrar usuarios</h1>
   <table class="table rounded shadow table-striped">
     <thead>
       <tr>
         <th scope="col">id</th>
         <th scope="col">Nombre</th>
         <th scope="col">Usuario</th>
-
         <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      @for (usuario of usuarios; track usuario.id) {
-      <tr>
-        <th>{{ usuario._id }}</th>
-        <td>{{ usuario.nombre }}</td>
-
-        <td>{{ usuario.nombreUsuario }}</td>
+      <tr *ngFor="let user of users?.data">
+        <td>{{ user._id }}</td>
+        <td>{{ user.nombre }}</td>
+        <td>{{ user.nombreUsuario }}</td>
         <td>
-          <button
-            type="button"
-            class="btn btn-outline-info p-2"
-            (click)="manejarCTA(usuario._id)"
-          >
-            <i class="bi bi-pencil"></i>
+          <button type="button" class="btn btn-outline-info p-2">
+            <i class="bi bi-pencil" (click)="editUser(user)"></i>
           </button>
           <button
             type="button"
             class="btn btn-outline-danger p-2"
-            (click)="manejarBorrar(usuario._id)"
+            (click)="delateUser(user._id)"
           >
             <i class="bi bi-trash3"></i>
           </button>
-
           <button
             type="button"
             class="btn btn-outline-warning p-2"
-            (click)="manejarCTA(usuario._id)"
+            (click)="viewUser(user)"
           >
             <i class="bi bi-eye"></i>
           </button>
         </td>
       </tr>
-      }
     </tbody>
   </table>
+
+  <div class="container row"></div>
 </div>

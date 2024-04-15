@@ -1,0 +1,55 @@
+<div class="button-container">
+  <button
+    (click)="showShoppingCart = !showShoppingCart"
+    class="btn btn-outline-light mx-2"
+  >
+    <i class="bi bi-basket"></i>
+  </button>
+  <span class="product-count">{{ (products$ | async)?.length }}</span>
+</div>
+
+<div *ngIf="showShoppingCart" class="shopping-cart-overlay text-white">
+  <div class="shopping-cart-container">
+    <div *ngIf="products$ | async as products; else loading">
+      <h2>Carrito de compras:</h2>
+      <ul class="list-unstyled">
+        <li *ngFor="let product of products" class="d-flex align-items-center">
+          <div class="mr-3">
+            <img
+              [src]="product.image"
+              [alt]="product.title"
+              width="50"
+              height="50"
+            />
+          </div>
+          <div
+            class="d-flex justify-content-between align-items-center flex-grow-1"
+          >
+            <div>
+              <span>{{ product.title }}</span>
+              <span>{{ product.price }}</span>
+            </div>
+            <div>
+              <button (click)="deleteProduct(product)" class="btn btn-danger">
+                <i class="bi bi-x-circle"></i>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="total-price">
+        <div>{{ totalPrice }} $</div>
+        <div>
+          <button (click)="buy()" class="btn btn-success">Comprar</button>
+        </div>
+      </div>
+      <button class="close-button btn btn-danger" (click)="closeShoppingCart()">
+        <i class="bi bi-x-circle"></i>
+      </button>
+    </div>
+
+    <ng-template #loading>
+      <p>Loading...</p>
+    </ng-template>
+  </div>
+</div>

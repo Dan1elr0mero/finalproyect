@@ -1,59 +1,59 @@
-.product_list_container {
-  display: flex;
-  justify-content: center;
-
-  flex-wrap: wrap;
-
-  width: 100%;
+.product-card-custom {
+  width: 350px; /* Define el ancho deseado */
+  height: 450px; /* Define la altura deseada */
+  /* Añade otros estilos según sea necesario */
+  transition: transform 0.3s ease;
 }
 
-.single_product_image {
-  width: 100px;
+.product-card-custom:hover {
+  transform: scale(
+    1.05
+  ); /* Escala la tarjeta al 105% del tamaño original cuando el mouse está sobre ella */
+}
+.card-image-custom {
+  width: 100%; /* Establece el ancho al 100% del contenedor */
+  height: 200px; /* Establece la altura deseada */
+  object-fit: cover; /* Ajusta la imagen para llenar el contenedor sin deformarla */
 }
 
-.single_product_container {
-  display: grid;
-
-  grid-template-rows: 220px 1fr;
-
-  width: 200px;
-
-  padding: 1rem;
-  margin: 1rem;
-
-  background-color: white;
-  border-radius: 8px;
-
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-  text-align: center;
+.card-text-custom {
+  overflow: hidden; /* Oculta el texto que excede el espacio disponible */
+  text-overflow: ellipsis; /* Agrega puntos suspensivos (...) al texto que se corta */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+.card-title-custom {
+  font-size: 1.25rem; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+  margin-bottom: 0.5rem; /* Margen inferior */
+  color: #333; /* Color del texto */
+  max-width: 200px; /* Tamaño máximo permitido para el título */
+  white-space: nowrap; /* Evita el salto de línea */
+  overflow: hidden; /* Oculta el contenido que excede el ancho */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos (...) cuando el texto se recorta */
 }
 
-.product_title {
-  display: block;
-
-  font-size: 1rem;
-
-  text-overflow: ellipsis;
-  overflow: hidden;
-
-  height: 20px;
-  font-family: "Roboto", sans-serif;
-  text-align: left;
+.custom-rating {
+  font-size: 24px; /* Tamaño de fuente más grande */
+  text-align: center; /* Centra el contenido */
+  color: gold;
 }
 
-.product_price {
-  font-size: 1rem;
-  font-weight: bold;
-
-  font-family: "Roboto", sans-serif;
+.custom-rating .star {
+  color: gold; /* Hace que las estrellas sean amarillas */
 }
 
-.single_product_image {
-  width: 100%;
-  height: 200px;
+.container {
+  margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+}
 
-  object-fit: fill;
+.form-control,
+.form-select {
+  border-radius: 5px;
+  border-color: #ced4da; /* Color del borde */
+}
 
-  border: 0.5px solid #b9bbbd;
+.form-control:focus,
+.form-select:focus {
+  border-color: #80bdff; /* Color del borde al estar enfocado */
+  box-shadow: 0 0 0 0.25rem rgb(0 123 255 / 25%); /* Efecto de sombra al estar enfocado */
 }

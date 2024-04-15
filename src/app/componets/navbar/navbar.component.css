@@ -9,3 +9,12 @@ nav {
 li {
   text-decoration-color: black;
 }
+
+.button-and-shopping-cart {
+  display: flex; /* Establecer como flexbox */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.app-shopping-car {
+  flex: 1; /* El componente de la lista de compras ocupará todo el espacio disponible */
+}

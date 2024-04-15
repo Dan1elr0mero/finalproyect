@@ -1,0 +1,12 @@
+.modal-custom {
+  max-width: 1000px;
+}
+.custom-rating {
+  font-size: 24px; /* Tamaño de fuente más grande */
+  text-align: center; /* Centra el contenido */
+  color: gold;
+}
+
+.custom-rating .star {
+  color: gold; /* Hace que las estrellas sean amarillas */
+}

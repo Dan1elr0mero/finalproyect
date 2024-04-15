@@ -5,6 +5,7 @@ import { NavbarComponent } from './componets/navbar/navbar.component';
 import { IndexComponent } from './componets/index/index.component';
 import { LoginComponent } from './componets/login/login.component';
 import { FooterComponent } from './componets/footer/footer.component';
+import { Store, StoreModule } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',

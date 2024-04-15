@@ -1,0 +1,57 @@
+<div class="modal fade show" tabindex="-1" role="dialog" style="display: block">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="col">
+          <div class="card-body a">
+            <div class="card-title card-title-custom">id:{{ user._id }}</div>
+            <div class="form-group">
+              <label for="nombre">Editar Nombre:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                [(ngModel)]="editedUser!.nombre"
+              />
+            </div>
+            <div class="form-group">
+              <label for="nombreUsuario">Editar Usuario:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombreUsuario"
+                [(ngModel)]="editedUser!.nombreUsuario"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contrasenia">Editar contraseña:</label>
+              <input
+                type="password"
+                class="form-control"
+                id="contrasenia"
+                [(ngModel)]="editedUser!.contrasenia"
+              />
+            </div>
+            <div class="card-text card-text-custom"></div>
+            Fecha de creacion: {{ user.createdAt }}
+            <div class="card-text card-text-custom"></div>
+          </div>
+          <div class="row"></div>
+        </div>
+      </div>
+      <!-- close -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          <i class="bi bi-x-circle"></i> Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="updateUser(user._id)"
+        >
+          <i class="bi bi-check-circle"></i> Guardar cambios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

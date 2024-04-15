@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Usuarios } from '../interfaces/usuarios';
-
+import { Usuario } from '../interfaces/usuarios';
+import { ResponseapiUser, User } from '../interfaces/apiResponse';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,23 +11,18 @@ export class CreateUserService {
   constructor() {}
   router = inject(Router);
   httpClient = inject(HttpClient);
-  API_URL: string = 'http://localhost:4500/usuarios';
-  crearUsuario(credencialesRegister: Usuarios) {
+  API_URL: string = 'http://3.138.36.232:8080/usuarios';
+  crearUsuario(credencialesRegister: User) {
     return this.httpClient.post(this.API_URL, credencialesRegister);
   }
-  leerTodos() {
-    return this.httpClient.get(this.API_URL);
+  getUsers(): Observable<ResponseapiUser> {
+    return this.httpClient.get<ResponseapiUser>(this.API_URL);
   }
 
-  leer(id: string) {
-    return this.httpClient.get(this.API_URL + '/' + id);
-  }
-
-  edit(id: string, usuario: Usuarios) {
-    return this.httpClient.put(`${this.API_URL}/${id}`, usuario);
-  }
-
-  delate(id: string) {
+  deleteUser(id: string) {
     return this.httpClient.delete(`${this.API_URL}/${id}`);
+  }
+  updateUser(id: string, user: User) {
+    return this.httpClient.put(`${this.API_URL}/${id}`, user);
   }
 }

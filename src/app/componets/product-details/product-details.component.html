@@ -1,0 +1,66 @@
+<div class="modal fade show" tabindex="-1" role="dialog" style="display: block">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="col">
+          <img
+            [src]="productInformation!.image"
+            [alt]="productInformation!.title"
+            class="card-img-top card-image-custom"
+          />
+          <div class="card-body a">
+            <div class="card-title card-title-custom">
+              {{ productInformation!.title }}
+            </div>
+            <div class="card-text card-text-custom">
+              {{ productInformation!.price }} $
+            </div>
+            <div class="card-text card-text-custom">
+              Categoria: {{ productInformation!.category }}
+            </div>
+            <div class="card-text card-text-custom">
+              Precio:{{ productInformation!.description }}
+            </div>
+
+            <ngb-rating
+              [rate]="productInformation!.rating?.rate || 0.5"
+              [max]="5"
+              class="align-self-center"
+              [readonly]="true"
+            ></ngb-rating>
+            <div class="card-text card-text-custom">
+              valorado por {{ productInformation!.rating?.count }} usuarios
+            </div>
+          </div>
+          <div class="row">
+            <button
+              (click)="productCar(productInformation!)"
+              class="btn btn-outline-dark col-6 p-1 my-2"
+            >
+              <i class="bi bi-cart"></i>
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger btn-favorite col-6 p-1 my-2"
+              data-bs-toggle="button"
+              (click)="Favorite(productInformation!)"
+            >
+              {{
+                (isFavorite$ | async)
+                  ? "Quitar de favoritos"
+                  : "Agregar a favoritos"
+              }}
+              <i class="bi bi-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- close -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="cerrarModal()">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

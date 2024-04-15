@@ -11,7 +11,11 @@ import { RouterLink } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../../services/users.service';
-import { Usuarios } from '../../interfaces/usuarios';
+import { Usuario } from '../../interfaces/usuarios';
+import { LoginResponse } from '../../interfaces/login';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../../app.state';
+import { logOut, logInSuccess } from '../../store/login.actions';
 
 const jwtHelperService = new JwtHelperService();
 
@@ -23,6 +27,9 @@ const jwtHelperService = new JwtHelperService();
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  //constructor necessary for the operation ngrx
+  constructor(private store: Store<AppState>) {}
+
   router = inject(Router);
   toastrService = inject(ToastrService);
   UsersService: UsersService = inject(UsersService);
@@ -32,7 +39,6 @@ export class LoginComponent {
   });
 
   manejarEnvio() {
-    console.log('hice click');
     if (this.credenciales.valid) {
       const nombreUsuario = this.credenciales.value.nombreUsuario;
       const contrasenia = this.credenciales.value.contrasenia;
@@ -40,31 +46,37 @@ export class LoginComponent {
       if (
         typeof nombreUsuario === 'string' &&
         typeof contrasenia === 'string'
+        //verification of data type
       ) {
-        console.log('la contraseña y susuario son string');
-        const credenciales: Usuarios = {
+        const credenciales: Usuario = {
+          _id: '',
           nombreUsuario,
           contrasenia,
         };
-
         this.UsersService.iniciarSesion(credenciales).subscribe(
-          (respuesta: any) => {
+          (respuesta: LoginResponse) => {
             if (respuesta.result === 'good') {
-              console.log(respuesta);
+              //ngrx
+
+              // fill the state whit dispatch
+              this.store.dispatch(logInSuccess({ loginResponse: respuesta }));
+              //end ngrx
               const decodificado = jwtHelperService.decodeToken(
                 respuesta.data.token
               );
-
-              console.log(decodificado);
+              //admin session
               if (decodificado.id == '66159dd47ee7c2b4c0e60baf') {
                 this.router.navigateByUrl('/admin');
               } else {
+                //user session
+
                 localStorage.setItem('token', respuesta.data.token);
                 localStorage.setItem('data', JSON.stringify(decodificado));
                 this.toastrService.success('Bienvenido');
                 this.router.navigateByUrl('/privateindex');
               }
             } else {
+              //error at the login
               this.toastrService.error('error al iniciar sesion');
             }
           }
